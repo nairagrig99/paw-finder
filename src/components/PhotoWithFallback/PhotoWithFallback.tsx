@@ -5,7 +5,6 @@ export default function PhotoWithFallback({photoUrl}: { photoUrl: string | undef
     return <img src={photoUrl || defaultPhoto}
                 className="w-full"
                 onError={(e) => {
-                    console.log("eee", e.currentTarget)
                     e.currentTarget.src = defaultPhoto
                 }}
                 alt=""/>

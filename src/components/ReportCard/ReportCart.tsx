@@ -5,7 +5,7 @@ import useConvertDate from "../../hooks/useConvertDate.ts";
 
 export default function ReportCart({pet}: { pet: Report }) {
 
-    const convertDate = useConvertDate()
+    const convertDate = useConvertDate();
 
     return <div className="border p-[7px] flex flex-col justify-around">
 
