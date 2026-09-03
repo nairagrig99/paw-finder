@@ -19,7 +19,6 @@ export default function useConvertDate() {
     return (createdAt: string) => {
         const createdTime = new Date(createdAt).getTime();
         const differencesInSecond = Math.floor((dateNow - createdTime) / MILLISECOND);
-        if (differencesInSecond < 0) return
         const hour = MINUTE * MINUTE;
         const day = hour * DAY;
         const month = day * MONTH;
