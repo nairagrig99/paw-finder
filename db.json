@@ -1,0 +1,71 @@
+
+{
+  "reports": [
+    {
+      "id": "1",
+      "type": "lost",
+      "petType": "dog",
+      "petName": "Buddy",
+      "details": "Brown labrador, very friendly, wearing a red collar. Last seen near the park entrance.",
+      "photoUrl": "https://placedog.net/400/300?id=1",
+      "location": "Riverside Park, North Gate",
+      "contact": "sarah.jones@email.com",
+      "createdAt": "2026-08-24T08:30:00Z"
+    },
+    {
+      "id": "2",
+      "type": "found",
+      "petType": "cat",
+      "petName": "Unknown",
+      "details": "Grey tabby, no collar, very calm. Found wandering near the grocery store.",
+      "photoUrl": "https://placekitten.com/400/300",
+      "location": "Main St & 5th Ave",
+      "contact": "mike.brown@email.com",
+      "createdAt": "2026-08-23T14:15:00Z"
+    },
+    {
+      "id": "3",
+      "type": "lost",
+      "petType": "cat",
+      "petName": "Luna",
+      "details": "Black and white cat, indoor cat, very shy around strangers. Missing since Friday night.",
+      "photoUrl": "",
+      "location": "Maple Street neighborhood",
+      "contact": "555-0192",
+      "createdAt": "2026-08-22T20:00:00Z"
+    },
+    {
+      "id": "4",
+      "type": "found",
+      "petType": "dog",
+      "petName": "Unknown",
+      "details": "Small white terrier mix, energetic, responds to whistling. Found in the parking lot.",
+      "photoUrl": "https://placedog.net/400/300?id=4",
+      "location": "Westfield Shopping Center",
+      "contact": "found_pets@shelter.org",
+      "createdAt": "2026-08-21T11:45:00Z"
+    },
+    {
+      "id": "5",
+      "type": "lost",
+      "petType": "bird",
+      "petName": "Mango",
+      "details": "Green and yellow parakeet. Flies out of open windows. Very vocal, says his own name.",
+      "photoUrl": "",
+      "location": "Oak Avenue, near the school",
+      "contact": "kim.lee@email.com",
+      "createdAt": "2026-08-20T09:00:00Z"
+    },
+    {
+      "id": "6",
+      "type": "found",
+      "petType": "other",
+      "petName": "Unknown",
+      "details": "Small brown rabbit with floppy ears, found in the backyard. Very tame, likely someone's pet.",
+      "photoUrl": "",
+      "location": "Cedar Lane, backyard",
+      "contact": "555-0347",
+      "createdAt": "2026-08-19T16:30:00Z"
+    }
+  ]
+}
