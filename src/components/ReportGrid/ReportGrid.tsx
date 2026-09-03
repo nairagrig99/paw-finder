@@ -8,7 +8,6 @@ import Pagination from "../Pagination/Pagination.tsx";
 export default function ReportGrid({fetchReport}: { fetchReport: Promise<PaginatedResponse<Report>> }) {
     const getPets = use(fetchReport);
 
-    console.log("dataaaaaaaaaaaa", getPets);
 
     return <div className="grid grid-cols-[repeat(3,auto)] gap-4">
         {

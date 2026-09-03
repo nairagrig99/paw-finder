@@ -3,22 +3,22 @@ import {DAY, MILLISECOND, MINUTE, MONTH, YEAR} from "../constant.ts";
 
 export default function useConvertDate() {
 
-    const [dateNow, setDateNow] = useState<number>(0);
+    const [dateNow, setDateNow] = useState<number>(() => Date.now());
 
     useEffect(() => {
+
         const timer = setTimeout(() => {
             setDateNow(Date.now());
         }, 1000);
 
         return () => clearTimeout(timer)
+
     }, []);
 
     //idempotency problem
     return (createdAt: string) => {
-
         const createdTime = new Date(createdAt).getTime();
         const differencesInSecond = Math.floor((dateNow - createdTime) / MILLISECOND);
-
         const hour = MINUTE * MINUTE;
         const day = hour * DAY;
         const month = day * MONTH;

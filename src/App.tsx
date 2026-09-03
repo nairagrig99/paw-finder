@@ -1,14 +1,16 @@
 import './App.css'
-import {Suspense} from "react";
-import ReportGrid from "./components/ReportGrid/ReportGrid.tsx";
-import {fetchReports} from "./api/report.ts";
+import ReportPage from "./pages/ReportPage.tsx";
+import {createBrowserRouter, RouterProvider} from "react-router";
+
+const router = createBrowserRouter([
+    {
+        path: '/',
+        element: <ReportPage/>
+    }
+])
 
 function App() {
-    const fetchReport = fetchReports(1);
-
-    return <Suspense fallback={<div>Loading pet lists...</div>}>
-        <ReportGrid fetchReport={fetchReport}/>
-    </Suspense>
+    return <RouterProvider router={router}></RouterProvider>
 }
 
 export default App
