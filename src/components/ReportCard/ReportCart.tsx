@@ -11,10 +11,10 @@ export default function ReportCart({pet}: { pet: Report }) {
 
         <PhotoWithFallback photoUrl={pet.photoUrl}/>
 
-        <div className="flex items-center justify-between">
+        <div className="flex items-center justify-between break-words">
             <div>
-                <p className="capitalize">pet name: {pet.petName}</p>
-                <p className="capitalize">pet type: {pet.petType}</p>
+                <p className="capitalize">pet name: <span>{pet.petName}</span></p>
+                <p className="capitalize">pet type: <span>{pet.petType}</span> </p>
                 <p className="capitalize">{pet.location}</p>
                 <p className="capitalize">{convertDate(pet.createdAt)}</p>
             </div>
