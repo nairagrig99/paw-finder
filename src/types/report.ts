@@ -12,8 +12,13 @@ export interface Report {
 
 export interface PaginatedResponse<T> {
     data: T[];
-    total: number;
-    page: number;
+    first: number,
+    items: number,
+    last: number,
+    next: number,
+    pages: number,
+    prev: number
+
 }
 
 export type AnnouncementType = Pick<Report, "type">;

@@ -9,7 +9,7 @@ export default function useConvertDate() {
 
         const timer = setTimeout(() => {
             setDateNow(Date.now());
-        }, 1000);
+        }, MILLISECOND);
 
         return () => clearTimeout(timer)
 
