@@ -7,11 +7,11 @@ export default function ReportCart({pet}: { pet: Report }) {
 
     const convertDate = useConvertDate();
 
-    return <div className="border p-[7px] flex flex-col justify-around">
+    return <div className="border p-[7px] flex flex-col justify-around break-words">
 
         <PhotoWithFallback photoUrl={pet.photoUrl}/>
 
-        <div className="flex items-center justify-between break-words">
+        <div className="flex items-center justify-between break-all">
             <div>
                 <p className="capitalize">pet name: <span>{pet.petName}</span></p>
                 <p className="capitalize">pet type: <span>{pet.petType}</span> </p>

@@ -22,3 +22,13 @@ export interface PaginatedResponse<T> {
 }
 
 export type AnnouncementType = Pick<Report, "type">;
+
+export type ReportProps = {
+    fetchReport?: Promise<PaginatedResponse<Report>>,
+    setPage: (page: number) => void,
+    page: number
+}
+
+export type PetListProps = { petsList: PaginatedResponse<Report> }
+
+export type PaginationProps = Pick<ReportProps, "setPage" | "page"> & PetListProps

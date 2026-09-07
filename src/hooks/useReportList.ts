@@ -1,4 +1,4 @@
-import {useCallback, useState, useTransition} from "react";
+import {useState, useTransition} from "react";
 import {fetchReports} from "../api/report.ts";
 import type {PaginatedResponse} from "../types/report.ts";
 
@@ -7,7 +7,7 @@ export default function useReportList(pageNumber: number = 1) {
     const [page, setPageState] = useState(pageNumber);
     const [isPending, startTransition] = useTransition();
 
-
+    // console.log("page", page)
     // const fetchReportList = useMemo<Promise<PaginatedResponse<Report>>>(() => {
     //     return fetchReports(page)
     // }, [page])
