@@ -24,7 +24,7 @@ export interface PaginatedResponse<T> {
 export type AnnouncementType = Pick<Report, "type">;
 
 export type ReportProps = {
-    fetchReport?: Promise<PaginatedResponse<Report>>,
+    fetchReport: Promise<PaginatedResponse<Report>>,
     setPage: (page: number) => void,
     page: number
 }

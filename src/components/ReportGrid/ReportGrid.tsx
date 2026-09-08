@@ -9,7 +9,7 @@ export default function ReportGrid({fetchReport, setPage, page}: ReportProps) {
     const getPets = use(fetchReport);
 
     return <div className="flex flex-col gap-2">
-        <div className="grid grid-cols-[repeat(3,250px)] gap-4">
+        <div className="flex flex-wrap w-full gap-4 justify-center">
             {
                 getPets.data.map((pet: Report) => (
                     <ReportCart pet={pet} key={pet.id}/>

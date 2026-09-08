@@ -37,10 +37,8 @@ export default function Pagination({setPage, page, petsList}: PaginationProps) {
             if (currentPage > page) return prevState - pageWidth
             return prevState + pageWidth
         })
-        console.log("pageRef", pageRef)
     }
 
-    // console.log("transform", transform)
     return <div className="flex gap-2 justify-center mt-8">
         <button
             onClick={handlePrev}
