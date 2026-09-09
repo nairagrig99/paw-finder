@@ -13,7 +13,7 @@ export default function ReportPage() {
     }
 
     return <div className="flex flex-col gap-5 items-start w-full px-3 py-10">
-        {isOpen && <div className="absolute inset-0 bg-black/50"></div>}
+        {isOpen && <div onClick={handleReport} className="absolute inset-0 bg-black/50"></div>}
         <button
             onClick={handleReport}
             className="bg-green-500 px-5 py-2 rounded-sm w-fit text-white">
