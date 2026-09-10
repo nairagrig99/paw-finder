@@ -11,7 +11,7 @@ export default function ReportPage() {
     const handleReport = () => {
         setIsOpen(prevState => !prevState)
     }
-
+    // alert("maybe this is workign?")
     return <div className="flex flex-col gap-5 items-start w-full px-3 py-10">
         {isOpen && <div onClick={handleReport} className="absolute inset-0 bg-black/50"></div>}
         <button

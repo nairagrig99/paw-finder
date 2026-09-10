@@ -3,8 +3,8 @@ export type PetType = 'dog' | 'cat' | 'bird' | 'other'
 
 export interface Report {
     id?: string
-    type?: AnnouncementType
-    petType?: PetType
+    type: AnnouncementType
+    petType: PetType
     petName: string
     details: string
     photoUrl?: string
@@ -34,3 +34,14 @@ export type PetListProps = { petsList: PaginatedResponse<Report> }
 export type PaginationProps = Pick<ReportProps, "setPage" | "page"> & PetListProps
 
 export type FormElementType = HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
+
+export type ActionState = {
+    success: boolean;
+    data: null;
+    error: string | null;
+};
+
+export type ModalProps = {
+    isOpen: boolean,
+    setIsOpen: (open: boolean) => void
+}
