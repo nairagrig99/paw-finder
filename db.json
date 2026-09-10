@@ -1,4 +1,3 @@
-
 {
   "reports": [
     {
@@ -49,7 +48,7 @@
       "id": "5",
       "type": "lost",
       "petType": "bird",
-      "petName": "Mango",
+      "petName": "Mango 2",
       "details": "Green and yellow parakeet. Flies out of open windows. Very vocal, says his own name.",
       "photoUrl": "",
       "location": "Oak Avenue, near the school",
@@ -67,7 +66,6 @@
       "contact": "555-0347",
       "createdAt": "2026-08-19T16:30:00Z"
     },
-
     {
       "id": "31",
       "type": "lost",
@@ -116,7 +114,7 @@
       "id": "35",
       "type": "lost",
       "petType": "bird",
-      "petName": "Mango",
+      "petName": "Mango 5",
       "details": "Green and yellow parakeet. Flies out of open windows. Very vocal, says his own name.",
       "photoUrl": "",
       "location": "Oak Avenue, near the school",
@@ -182,7 +180,7 @@
       "id": "11",
       "type": "lost",
       "petType": "bird",
-      "petName": "Mango",
+      "petName": "Mango 7",
       "details": "Green and yellow parakeet. Flies out of open windows. Very vocal, says his own name.",
       "photoUrl": "",
       "location": "Oak Avenue, near the school",
@@ -199,7 +197,8 @@
       "location": "Cedar Lane, backyard",
       "contact": "555-0347",
       "createdAt": "2026-08-19T16:30:00Z"
-    }, {
+    },
+    {
       "id": "13",
       "type": "lost",
       "petType": "dog",
@@ -396,7 +395,8 @@
       "location": "Cedar Lane, backyard",
       "contact": "555-0347",
       "createdAt": "2026-08-19T16:30:00Z"
-    },{
+    },
+    {
       "id": "37",
       "type": "lost",
       "petType": "dog",
@@ -462,7 +462,6 @@
       "contact": "555-0347",
       "createdAt": "2026-08-19T16:30:00Z"
     },
-
     {
       "id": "4331",
       "type": "lost",
@@ -594,7 +593,8 @@
       "location": "Cedar Lane, backyard",
       "contact": "555-0347",
       "createdAt": "2026-08-19T16:30:00Z"
-    }, {
+    },
+    {
       "id": "1553",
       "type": "lost",
       "petType": "dog",
@@ -791,7 +791,8 @@
       "location": "Cedar Lane, backyard",
       "contact": "555-0347",
       "createdAt": "2026-08-19T16:30:00Z"
-    },{
+    },
+    {
       "id": "3890",
       "type": "found",
       "petType": "other",
@@ -801,6 +802,193 @@
       "location": "Cedar Lane, backyard",
       "contact": "555-0347",
       "createdAt": "2026-08-19T16:30:00Z"
+    },
+    {
+      "type": "Found",
+      "petType": "Bird",
+      "petName": "Miki",
+      "photoUrl": "http://localhost:5173/",
+      "location": "America",
+      "details": "in street",
+      "contact": "naira@mail.com",
+      "createdAt": "Wed Sep 09 2026 17:35:24 GMT+0400 (Armenia Standard Time)",
+      "id": "wcdWQwHuvsk"
+    },
+    {
+      "type": "Found",
+      "petType": "Bird",
+      "petName": "Miki",
+      "photoUrl": "http://localhost:5173/",
+      "location": "America",
+      "details": "e",
+      "contact": "naira@mail.com",
+      "createdAt": "Wed Sep 09 2026 17:38:31 GMT+0400 (Armenia Standard Time)",
+      "id": "PHEIws6eXT4"
+    },
+    {
+      "type": "Found",
+      "petType": "Cat",
+      "petName": "Miki",
+      "photoUrl": "http://localhost:5173/",
+      "location": "America",
+      "details": "America",
+      "contact": "naira@mail.com",
+      "createdAt": "Wed Sep 09 2026 17:41:23 GMT+0400 (Armenia Standard Time)",
+      "id": "-It_gFqo1oY"
+    },
+    {
+      "type": "Found",
+      "petType": "Cat",
+      "petName": "Miki",
+      "photoUrl": "http://localhost:5173/",
+      "location": "America",
+      "details": "new Promise((resolve) => setTimeout(resolve, 5000))",
+      "contact": "naira@mail.com",
+      "createdAt": "Wed Sep 09 2026 17:42:23 GMT+0400 (Armenia Standard Time)",
+      "id": "mmHN8aZvY3A"
+    },
+    {
+      "type": "Found",
+      "petType": "Bird",
+      "petName": "Picky",
+      "photoUrl": "http://localhost:5173/",
+      "location": "America",
+      "details": "s",
+      "contact": "naira@mail.com",
+      "createdAt": "Wed Sep 09 2026 17:47:33 GMT+0400 (Armenia Standard Time)",
+      "id": "I_jFIV9kqfc"
+    },
+    {
+      "type": "Found",
+      "petType": "Bird",
+      "petName": "Miki",
+      "photoUrl": "http://localhost:5173/",
+      "location": "America",
+      "details": "America",
+      "contact": "naira@mail.com",
+      "createdAt": "2026-09-10T07:46:52Z",
+      "id": "y12bYBKbk-M"
+    },
+    {
+      "type": "Lost",
+      "petType": "Dog",
+      "petName": "Miki",
+      "photoUrl": "https://placedog.net/400/300?id=4",
+      "location": "America",
+      "details": "America",
+      "contact": "naira@mail.com",
+      "createdAt": "2026-09-10T07:51:57Z",
+      "id": "iI9ztxBa-jM"
+    },
+    {
+      "type": "Found",
+      "petType": "Other",
+      "petName": "Miki",
+      "photoUrl": "https://placedog.net/400/300?id=4",
+      "location": "Moscow",
+      "details": "Moscow",
+      "contact": "naira@mail.com",
+      "createdAt": "2026-09-10T08:04:07Z",
+      "id": "_B3IbgkbB3o"
+    },
+    {
+      "type": "Lost",
+      "petType": "Bird",
+      "petName": "Picky",
+      "photoUrl": "http://localhost:5173/",
+      "location": "America",
+      "details": "Moscow",
+      "contact": "naira@mail.com",
+      "createdAt": "2026-09-10T08:05:15Z",
+      "id": "wbIj1910Gk8"
+    },
+    {
+      "type": "Found",
+      "petType": "Bird",
+      "petName": "Picky",
+      "photoUrl": "http://localhost:5173/",
+      "location": "Moscow",
+      "details": "AddReportModal",
+      "contact": "naira@mail.com",
+      "createdAt": "2026-09-10T08:16:00Z",
+      "id": "G7_8zAeJRPo"
+    },
+    {
+      "type": "Found",
+      "petType": "Bird",
+      "petName": "Picky",
+      "photoUrl": "https://placedog.net/400/300?id=4",
+      "location": "America",
+      "details": "AddReportModal",
+      "contact": "naira@mail.com",
+      "createdAt": "2026-09-10T08:16:52Z",
+      "id": "n_U0RQl5Rcg"
+    },
+    {
+      "type": "Found",
+      "petType": "Cat",
+      "petName": "Miki",
+      "photoUrl": "https://placedog.net/400/300?id=4",
+      "location": "America",
+      "details": "BASE_URL",
+      "contact": "BASE_URL",
+      "createdAt": "2026-09-10T08:43:42Z",
+      "id": "OISPgwPjBNQ"
+    },
+    {
+      "type": "Found",
+      "petType": "Cat",
+      "petName": "Picky",
+      "photoUrl": "https://placedog.net/400/300?id=4",
+      "location": "Moscow",
+      "details": "BASE_URL",
+      "contact": "BASE_URL",
+      "createdAt": "2026-09-10T08:44:26Z",
+      "id": "au3cLTQDl4U"
+    },
+    {
+      "type": "Found",
+      "petType": "Cat",
+      "petName": "Picky",
+      "photoUrl": "http://localhost:5173/",
+      "location": "America",
+      "details": "sdf",
+      "contact": "BASE_URL",
+      "createdAt": "2026-09-10T08:59:49Z",
+      "id": "VkLIjVHWiEo"
+    },
+    {
+      "petType": "Other",
+      "petName": "Miki",
+      "photoUrl": "https://placedog.net/400/300?id=4",
+      "location": "Moscow",
+      "details": "<button type=\"submit\" disabled={isPending} className=\"bg-green-500 rounded py-2 px-4 w-fit text-white\">\n    Create\n</button>",
+      "contact": "BASE_URL",
+      "createdAt": "2026-09-10T09:00:21Z",
+      "id": "V5-41S-ZERM"
+    },
+    {
+      "id": "dee1",
+      "type": "Found",
+      "petType": "Bird",
+      "petName": "Picky",
+      "photoUrl": "http://localhost:5173/",
+      "location": "America",
+      "details": "sds",
+      "contact": "BASE_URL",
+      "createdAt": "2026-09-10T09:06:44Z"
+    },
+    {
+      "type": "Found",
+      "petType": "Cat",
+      "petName": "Picky",
+      "photoUrl": "https://placedog.net/400/300?id=4",
+      "location": "America",
+      "details": "eee",
+      "contact": "naira@mail.com",
+      "createdAt": "2026-09-10T10:00:22Z",
+      "id": "7hF5kN-iRQA"
     }
-  ]
+  ],
+  "$schema": "./node_modules/json-server/schema.json"
 }
