@@ -27,6 +27,5 @@ export default function useValidation() {
         validation(name, value)
     }
 
-    console.log('error', error);
-    return {error, validateForm,validateFormByName}
+    return {error, validateForm, validateFormByName}
 }
