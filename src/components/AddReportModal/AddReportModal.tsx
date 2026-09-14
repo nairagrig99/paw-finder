@@ -3,7 +3,7 @@ import type {ActionState, FormElementType, ModalProps, Report} from "../../types
 import useValidation from "../../hooks/useValidation.ts";
 import FormElement from "../FormElement/FormElement.tsx";
 import {createAnnouncementAction} from "../../api/action.ts";
-
+import {AnnouncementEnum, PetEnum} from "../../enums/enums.ts";
 
 const INITIAL_ACTION_STATE: ActionState = {
     success: false,
@@ -12,8 +12,8 @@ const INITIAL_ACTION_STATE: ActionState = {
 };
 
 const INITIAL_FORM: Report = {
-    type: "",
-    petType: "",
+    type: AnnouncementEnum.LOST,
+    petType: PetEnum.DOG,
     petName: "",
     details: "",
     photoUrl: "",
@@ -21,8 +21,7 @@ const INITIAL_FORM: Report = {
     contact: ""
 }
 
-
-export default function AddReportModal({isOpen, setIsOpen}: ModalProps) {
+export default function AddReportModal({isOpen, setIsOpen, page, setPage}: ModalProps) {
 
     const [state, formAction, isPending] = useActionState(createAnnouncementAction, INITIAL_ACTION_STATE);
 
@@ -44,19 +43,27 @@ export default function AddReportModal({isOpen, setIsOpen}: ModalProps) {
         }
     }, [isOpen, setIsOpen]);
 
-    const findErrors = useEffectEvent((data: Report) => {
-        for (const key in data) {
-            useValidate.validateFormByName(key, data[key])
+    const findErrors = useEffectEvent((state: ActionState) => {
+        if (!state.data) return
+        for (const key in state.data) {
+            const reportKey = key as keyof Report;
+            const value = state.data[reportKey];
+            useValidate.validateFormByName(reportKey, String(value))
         }
+    })
+
+    const changePageEvent = useEffectEvent(() => {
+        setPage(page)
     })
 
     useEffect(() => {
         if (state?.success) {
             setIsOpen(!isOpen)
+            changePageEvent()
         }
 
         if (state?.error) {
-            findErrors(state.data)
+            findErrors(state)
         }
 
     }, [state, setIsOpen, isOpen]);

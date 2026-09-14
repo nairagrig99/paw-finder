@@ -5,13 +5,13 @@ import AddReportModal from "../components/AddReportModal/AddReportModal.tsx";
 
 export default function ReportPage() {
 
-    const {fetchReportList, setPage, page} = useReportList(1);
+    const {fetchRequest, setPage, page} = useReportList(1);
     const [isOpen, setIsOpen] = useState<boolean>(false);
 
     const handleReport = () => {
         setIsOpen(prevState => !prevState)
     }
-    // alert("maybe this is workign?")
+
     return <div className="flex flex-col gap-5 items-start w-full px-3 py-10">
         {isOpen && <div onClick={handleReport} className="absolute inset-0 bg-black/50"></div>}
         <button
@@ -20,8 +20,11 @@ export default function ReportPage() {
             Add Report
         </button>
         <Suspense fallback={<div>Loading pet lists...</div>}>
-            <ReportGrid fetchReport={fetchReportList} setPage={setPage} page={page}/>
+            <ReportGrid fetchRequest={fetchRequest} setPage={setPage} page={page}/>
         </Suspense>
-        {isOpen && <AddReportModal isOpen={isOpen} setIsOpen={setIsOpen}/>}
+        {isOpen && <AddReportModal isOpen={isOpen}
+                                   page={page}
+                                   setPage={setPage}
+                                   setIsOpen={setIsOpen}/>}
     </div>
 }

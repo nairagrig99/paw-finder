@@ -23,11 +23,14 @@ export interface PaginatedResponse<T> {
     prev: number
 }
 
-export type ReportProps = {
-    fetchReport: Promise<PaginatedResponse<Report>>,
+type PageProps = {
     setPage: (page: number) => void,
     page: number
 }
+
+export type ReportProps = {
+    fetchRequest: Promise<PaginatedResponse<Report>>
+} & PageProps
 
 export type PetListProps = { petsList: PaginatedResponse<Report> }
 
@@ -37,11 +40,11 @@ export type FormElementType = HTMLInputElement | HTMLTextAreaElement | HTMLSelec
 
 export type ActionState = {
     success: boolean;
-    data: null;
+    data: Report | Record<string, FormDataEntryValue> | null;
     error: string | null;
 };
 
 export type ModalProps = {
     isOpen: boolean,
     setIsOpen: (open: boolean) => void
-}
+} & PageProps

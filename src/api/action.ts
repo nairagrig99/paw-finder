@@ -1,4 +1,4 @@
-import type {Report} from "../types/report.ts";
+import type { Report} from "../types/report.ts";
 import {createReports} from "./report.ts";
 
 export async function createAnnouncementAction(_: unknown, formData: FormData) {
@@ -21,7 +21,9 @@ export async function createAnnouncementAction(_: unknown, formData: FormData) {
             createdAt: new Date().toISOString().replace(/\.\d{3}/, "")
         } as Report;
 
-        await createReports(newFormDate);
+        await new Promise((resolve) => setTimeout(resolve, 3000))
+        const whatThis = await createReports(newFormDate);
+        console.log("whatThis", whatThis)
         return {success: true, data: null, error: null};
     } catch (err: unknown) {
         if (err instanceof Error) {

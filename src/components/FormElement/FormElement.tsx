@@ -125,7 +125,7 @@ export default function FormElement({
         </label>
 
         <input type="submit"
-               value="Create"
+               value={isPending ? 'Submitting...' : 'Submit'}
                disabled={isPending || isErrorExist()}
                className={`${isPending || isErrorExist() ? 'bg-gray-500 cursor-wait' : ' bg-green-500 cursor-pointer'} rounded py-2 px-4 w-fit text-white`}/>
     </form>
