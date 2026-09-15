@@ -2,6 +2,7 @@ import {Suspense, useState} from "react";
 import ReportGrid from "../components/ReportGrid/ReportGrid.tsx";
 import useReportList from "../hooks/useReportList.ts";
 import AddReportModal from "../components/AddReportModal/AddReportModal.tsx";
+import ReportsListSkeleton from "../components/FallbackState/ReportsListSkeleton.tsx";
 
 export default function ReportPage() {
 
@@ -19,7 +20,7 @@ export default function ReportPage() {
             className="bg-green-500 px-5 py-2 rounded-sm w-fit text-white">
             Add Report
         </button>
-        <Suspense fallback={<div>Loading pet lists...</div>}>
+        <Suspense fallback={<ReportsListSkeleton/>}>
             <ReportGrid fetchRequest={fetchRequest} setPage={setPage} page={page}/>
         </Suspense>
         {isOpen && <AddReportModal isOpen={isOpen}
