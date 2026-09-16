@@ -6,7 +6,8 @@ import ReportsListSkeleton from "../components/FallbackState/ReportsListSkeleton
 
 export default function ReportPage() {
 
-    const {fetchRequest, setPage, page} = useReportList(1);
+    const {fetchRequest, setPage, page} = useReportList();
+
     const [isOpen, setIsOpen] = useState<boolean>(false);
 
     const handleReport = () => {
@@ -21,7 +22,7 @@ export default function ReportPage() {
             Add Report
         </button>
         <Suspense fallback={<ReportsListSkeleton/>}>
-            <ReportGrid fetchRequest={fetchRequest} setPage={setPage} page={page}/>
+            {fetchRequest && <ReportGrid fetchRequest={fetchRequest} setPage={setPage} page={page}/>}
         </Suspense>
         {isOpen && <AddReportModal isOpen={isOpen}
                                    page={page}
