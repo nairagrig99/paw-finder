@@ -1,5 +1,5 @@
 import type {PaginationProps} from "../../types/report.ts";
-import {useEffect, useRef, useState} from "react";
+import {useEffect, useRef, useState, useTransition} from "react";
 import {PER_PAGINATION} from "../../constant.ts";
 
 
@@ -8,29 +8,33 @@ export default function Pagination({setPage, page, petsList}: PaginationProps) {
     const [transform, setTransform] = useState<number>(0);
     const [pageWidth, setPageWidth] = useState<number>(0)
     const pageRef = useRef<HTMLSpanElement[]>([]);
+    const [isPending, startTransition] = useTransition();
 
     useEffect(() => {
         setPageWidth(pageRef.current[0].offsetWidth)
     }, []);
 
+
     const handlePrev = () => {
         const prev = page - 1;
+
         if (prev <= 0) return
-        setPage(prev)
+        startTransition(() => setPage(prev))
         // if (page - PER_PAGINATION === 1) return;
         setTransform((prevState) => prevState + pageWidth)
     }
 
     const handleNext = () => {
         const next = page + 1;
+
         if (next > petsList.pages) return
-        setPage(next);
+        startTransition(() => setPage(next))
         if (page + PER_PAGINATION > petsList.pages) return;
         setTransform((prevState) => prevState - pageWidth)
     }
 
     const pageIndicators = (currentPage: number) => {
-        setPage(currentPage);
+        startTransition(() => setPage(currentPage))
         if (currentPage === petsList.pages || currentPage === 1) return;
 
         setTransform((prevState) => {
