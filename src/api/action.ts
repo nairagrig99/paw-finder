@@ -23,7 +23,7 @@ export async function createAnnouncementAction(_: unknown, formData: FormData) {
 
         await new Promise((resolve) => setTimeout(resolve, 3000))
         const whatThis = await createReports(newFormDate);
-        console.log("whatThis", whatThis)
+
         return {success: true, data: null, error: null};
     } catch (err: unknown) {
         if (err instanceof Error) {
