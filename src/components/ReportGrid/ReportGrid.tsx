@@ -1,12 +1,14 @@
 import type {Report, ReportProps} from "../../types/report.ts";
 import ReportCart from "../ReportCard/ReportCart.tsx";
 import Pagination from "../Pagination/Pagination.tsx";
-import {use} from "react";
+import {memo, use} from "react";
 
 
-export default function ReportGrid({fetchRequest, setPage, page}: ReportProps) {
+const ReportGrid = memo(({fetchRequest, setPage, page}: ReportProps) => {
+
 
     const getPets = use(fetchRequest);
+
 
     return <div className="flex flex-col gap-2 w-full">
         <div className="flex flex-wrap w-full gap-4 justify-center">
@@ -25,4 +27,5 @@ export default function ReportGrid({fetchRequest, setPage, page}: ReportProps) {
         {!!getPets.data.length && <Pagination petsList={getPets} setPage={setPage} page={page}/>}
     </div>
 
-}
+})
+export default ReportGrid

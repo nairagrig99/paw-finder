@@ -1,9 +1,9 @@
 import {useActionState, useEffect, useEffectEvent, useState} from "react";
 import type {ActionState, FormElementType, ModalProps, Report} from "../../types/report.ts";
 import useValidation from "../../hooks/useValidation.ts";
-import FormElement from "../FormElement/FormElement.tsx";
 import {createAnnouncementAction} from "../../api/action.ts";
 import {AnnouncementEnum, PetEnum} from "../../enums/enums.ts";
+import ReportForm from "../ReportForm/ReportForm.tsx";
 
 const INITIAL_ACTION_STATE: ActionState = {
     success: false,
@@ -52,9 +52,7 @@ export default function AddReportModal({isOpen, setIsOpen, page, setPage}: Modal
         }
     })
 
-    const changePageEvent = useEffectEvent(() => {
-        setPage(page)
-    })
+    const changePageEvent = useEffectEvent(() => setPage(page))
 
     useEffect(() => {
         if (state?.success) {
@@ -86,12 +84,12 @@ export default function AddReportModal({isOpen, setIsOpen, page, setPage}: Modal
         </div>
 
         <div>
-            <FormElement form={form}
-                         formAction={formAction}
-                         isPending={isPending}
-                         useValidate={useValidate}
-                         handleFormState={handleFormState}
-            ></FormElement>
+            <ReportForm form={form}
+                        formAction={formAction}
+                        isPending={isPending}
+                        useValidate={useValidate}
+                        handleFormState={handleFormState}
+            ></ReportForm>
         </div>
     </div>
 }

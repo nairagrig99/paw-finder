@@ -20,6 +20,8 @@ export default function useValidation() {
     }
     const validateForm = (event: React.ChangeEvent<FormElementType>) => {
         const {name, value} = event.target
+        console.log("name",name)
+        console.log("value",value)
         validation(name, value)
     }
     const validateFormByName = (name: string, value: string) => {
