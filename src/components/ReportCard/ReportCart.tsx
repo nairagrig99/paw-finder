@@ -16,7 +16,7 @@ export default function ReportCart({pet}: { pet: Report }) {
                 <p className="capitalize"><strong>pet name: </strong> <span>{pet.petName}</span></p>
                 <p className="capitalize"><strong>pet type:</strong> <span>{pet.petType}</span></p>
                 <p className="capitalize"><strong>pet description:</strong> <span>{pet.location}</span></p>
-                <p className="capitalize"><strong>created date:</strong> {convertDate(pet.createdAt)}</p>
+                {pet.createdAt && <p className="capitalize"><strong>created date:</strong> {convertDate(pet.createdAt)}</p>}
             </div>
             <Badge type={pet.type}/>
         </div>
