@@ -7,15 +7,15 @@ export default function Pagination({setPage, page, petsList}: PaginationProps) {
 
     const [transform, setTransform] = useState<number>(0);
     const [pageWidth, setPageWidth] = useState<number>(0)
-    const pageRef = useRef<HTMLSpanElement[]>([]);
+    const pageItemRefs = useRef<HTMLSpanElement[]>([]);
     const [isPending, startTransition] = useTransition();
 
     useEffect(() => {
-        setPageWidth(pageRef.current[0].offsetWidth)
+        setPageWidth(pageItemRefs.current[0].offsetWidth)
     }, []);
 
 
-    const handlePrev = () => {
+    const handlePrevPage = () => {
         const prev = page - 1;
 
         if (prev <= 0) return
@@ -24,7 +24,7 @@ export default function Pagination({setPage, page, petsList}: PaginationProps) {
         setTransform((prevState) => prevState + pageWidth)
     }
 
-    const handleNext = () => {
+    const handleNextPage = () => {
         const next = page + 1;
 
         if (next > petsList.pages) return
@@ -33,7 +33,7 @@ export default function Pagination({setPage, page, petsList}: PaginationProps) {
         setTransform((prevState) => prevState - pageWidth)
     }
 
-    const pageIndicators = (currentPage: number) => {
+    const handlePageSelect = (currentPage: number) => {
         startTransition(() => setPage(currentPage))
         if (currentPage === petsList.pages || currentPage === 1) return;
 
@@ -45,7 +45,7 @@ export default function Pagination({setPage, page, petsList}: PaginationProps) {
 
     return <div className="flex gap-2 justify-center mt-8">
         <button
-            onClick={handlePrev}
+            onClick={handlePrevPage}
             className="bg-black text-white px-3 py-2">Prev
         </button>
         <div className={`flex items-center gap-2 cursor-pointer overflow-hidden`}
@@ -57,15 +57,15 @@ export default function Pagination({setPage, page, petsList}: PaginationProps) {
                      transform: `translateX(${transform}px)`
                  }}>
                 {
-                    Array.from({length: petsList.pages}, (_, index) => index + 1).map((e, index) => {
-                        return <span onClick={() => pageIndicators(e)} key={e}
+                    Array.from({length: petsList.pages}, (_, index) => index + 1).map((pageNum, index) => {
+                        return <span onClick={() => handlePageSelect(pageNum)} key={pageNum}
                                      ref={(el) => {
                                          if (el) {
-                                             pageRef.current[index] = el
+                                             pageItemRefs.current[index] = el
                                          }
                                      }}
-                                     className={`px-3 py-1 rounded-full ${e === page ? 'bg-red-500' : ''}`}>
-                            {e}
+                                     className={`px-3 py-1 rounded-full ${pageNum === page ? 'bg-red-500' : ''}`}>
+                            {pageNum}
                         </span>
                     })
                 }
@@ -73,7 +73,7 @@ export default function Pagination({setPage, page, petsList}: PaginationProps) {
 
         </div>
         <button
-            onClick={handleNext}
+            onClick={handleNextPage}
             className="bg-black text-white px-3 py-2">
             Next
         </button>

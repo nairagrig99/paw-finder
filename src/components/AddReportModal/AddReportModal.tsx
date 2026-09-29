@@ -26,7 +26,7 @@ export default function AddReportModal({isOpen, setIsOpen, page, setPage}: Modal
     const [state, formAction, isPending] = useActionState(createAnnouncementAction, INITIAL_ACTION_STATE);
 
     const [form, setForm] = useState(INITIAL_FORM);
-    const useValidate = useValidation();
+    const validation = useValidation();
 
 
     useEffect(() => {
@@ -43,30 +43,30 @@ export default function AddReportModal({isOpen, setIsOpen, page, setPage}: Modal
         }
     }, [isOpen, setIsOpen]);
 
-    const findErrors = useEffectEvent((state: ActionState) => {
+    const validateErrors = useEffectEvent((state: ActionState) => {
         if (!state.data) return
         for (const key in state.data) {
             const reportKey = key as keyof Report;
             const value = state.data[reportKey];
-            useValidate.validateFormByName(reportKey, String(value))
+            validation.validateFormByName(reportKey, String(value))
         }
     })
 
-    const changePageEvent = useEffectEvent(() => setPage(page))
+    const handlePageChange = useEffectEvent(() => setPage(page))
 
     useEffect(() => {
         if (state?.success) {
             setIsOpen(!isOpen)
-            changePageEvent()
+            handlePageChange()
         }
 
         if (state?.error) {
-            findErrors(state)
+            validateErrors(state)
         }
 
     }, [state, setIsOpen, isOpen]);
 
-    const handleFormState = (e: React.ChangeEvent<FormElementType>) => {
+    const handleInputChange = (e: React.ChangeEvent<FormElementType>) => {
         const {name, value} = e.target
         setForm((prevState) => ({
             ...prevState,
@@ -87,8 +87,8 @@ export default function AddReportModal({isOpen, setIsOpen, page, setPage}: Modal
             <ReportForm form={form}
                         formAction={formAction}
                         isPending={isPending}
-                        useValidate={useValidate}
-                        handleFormState={handleFormState}
+                        validation={validation}
+                        handleInputChange={handleInputChange}
             ></ReportForm>
         </div>
     </div>

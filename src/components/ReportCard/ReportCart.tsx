@@ -1,11 +1,11 @@
 import type {Report} from "../../types/report.ts";
 import Badge from "../Badge/Badge.tsx";
 import PhotoWithFallback from "../PhotoWithFallback/PhotoWithFallback.tsx";
-import useConvertDate from "../../hooks/useConvertDate.ts";
+import useDateFormatter from "../../hooks/useConvertDate.ts";
 
 export default function ReportCart({pet}: { pet: Report }) {
 
-    const convertDate = useConvertDate();
+    const convertDate = useDateFormatter();
 
     return <div className="border p-[7px] flex flex-col justify-around break-words w-[250px]">
 
@@ -18,7 +18,7 @@ export default function ReportCart({pet}: { pet: Report }) {
                 <p className="capitalize"><strong>pet description:</strong> <span>{pet.location}</span></p>
                 <p className="capitalize"><strong>created date:</strong> {convertDate(pet.createdAt)}</p>
             </div>
-            <Badge type={pet.type}></Badge>
+            <Badge type={pet.type}/>
         </div>
 
     </div>

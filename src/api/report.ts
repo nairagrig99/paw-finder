@@ -1,25 +1,25 @@
-import {BASE_URL} from "../constant.ts";
+import {BASE_URL, DEFAULT_PAGE_SIZE} from "../constant.ts";
 import type {PaginatedResponse, Report} from "../types/report.ts";
 
 export async function fetchReports(page: number): Promise<PaginatedResponse<Report>> {
 
     try {
-        const response = await fetch(`${BASE_URL}/reports?_page=${page}&_per_page=${12}`)
+        const response = await fetch(`${BASE_URL}/reports?_page=${page}&_per_page=${DEFAULT_PAGE_SIZE}`)
 
         if (!response.ok) {
             throw new Error("Something went wrong");
         }
-       
+
         return await response.json();
-    } catch (e: unknown) {
-        if (e instanceof Error) {
+    } catch (error: unknown) {
+        if (error instanceof Error) {
             console.log("Something went wrong")
         }
-        throw e;
+        throw error;
     }
 }
 
-export async function createReports(reportForm: Report) {
+export async function createReport(reportForm: Report) {
 
     try {
         const response = await fetch(`${BASE_URL}/reports`, {
