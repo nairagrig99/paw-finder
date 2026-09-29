@@ -1,7 +1,7 @@
 import {useEffect, useState} from "react";
-import {convertData} from "../uril/convertData.ts";
+import {formatDate} from "../uril/convertData.ts";
 
-export default function useConvertDate() {
+export default function useDateFormatter() {
 
     const [dateNow, setDateNow] = useState<number>(() => Date.now());
 
@@ -15,6 +15,6 @@ export default function useConvertDate() {
     //
     // }, []);
 
-    return (createdAt: string) => convertData(createdAt, dateNow)
+    return (createdAt: string) => formatDate(createdAt, dateNow)
 
 }

@@ -5,6 +5,8 @@ export const DAY = 24
 export const MONTH = 30
 export const YEAR = 365
 
-export const MILLISECOND=1000;
+export const MILLISECOND = 1000;
 
 export const PER_PAGINATION = 3;
+
+export const DEFAULT_PAGE_SIZE = 12

@@ -7,17 +7,17 @@ type FormElementProps = {
     form: Report;
     formAction: (payload: FormData) => void;
     isPending: boolean;
-    useValidate: ReturnType<typeof useValidation>;
-    handleFormState: (e: React.ChangeEvent<FormElementType>) => void;
+    validation: ReturnType<typeof useValidation>;
+    handleInputChange: (e: React.ChangeEvent<FormElementType>) => void;
 };
 export default function ReportForm({
                                         form,
                                         isPending,
                                         formAction,
-                                        useValidate,
-                                        handleFormState
+                                       validation,
+                                        handleInputChange
                                     }: FormElementProps) {
-    const isErrorExist = () => !!Object.keys(useValidate?.error).length;
+    const isErrorExist = () => !!Object.keys(validation?.error).length;
 
     return <form action={formAction}
                  className="flex flex-col gap-5 p-5 h-[600px] overflow-y-scroll">
@@ -30,8 +30,8 @@ export default function ReportForm({
                            value="lost"
                            checked={form.type === 'lost'}
                            className="mr-2"
-                           onBlur={(event: React.ChangeEvent<FormElementType>) => useValidate.validateForm(event)}
-                           onChange={handleFormState}
+                           onBlur={(event: React.ChangeEvent<FormElementType>) => validation.validateForm(event)}
+                           onChange={handleInputChange}
                     />
                     <span>Lost</span>
                 </label>
@@ -41,20 +41,20 @@ export default function ReportForm({
                            value="found"
                            checked={form.type === 'found'}
                            className="mr-2"
-                           onBlur={(event: React.ChangeEvent<FormElementType>) => useValidate.validateForm(event)}
-                           onChange={handleFormState}
+                           onBlur={(event: React.ChangeEvent<FormElementType>) => validation.validateForm(event)}
+                           onChange={handleInputChange}
                     />
                     <span>Found</span>
                 </label>
 
             </div>
         </div>
-        <ErrorMessage message={useValidate?.error?.type}/>
+        <ErrorMessage message={validation?.error?.type}/>
 
         <label htmlFor="pet-type">Pet Type</label>
 
-        <select onChange={handleFormState}
-                onBlur={(event: React.ChangeEvent<FormElementType>) => useValidate.validateForm(event)}
+        <select onChange={handleInputChange}
+                onBlur={(event: React.ChangeEvent<FormElementType>) => validation.validateForm(event)}
                 value={form.petType}
                 name="petType"
                 id="pet-type"
@@ -67,38 +67,38 @@ export default function ReportForm({
             <option value="Other">Other</option>
         </select>
 
-        <ErrorMessage message={useValidate?.error?.petType}/>
+        <ErrorMessage message={validation?.error?.petType}/>
 
         <label className="flex flex-col gap-2">
             Pet Name
-            <input onChange={handleFormState}
+            <input onChange={handleInputChange}
                    value={form.petName}
-                   onBlur={(event: React.ChangeEvent<FormElementType>) => useValidate.validateForm(event)}
+                   onBlur={(event: React.ChangeEvent<FormElementType>) => validation.validateForm(event)}
                    type="text" placeholder="Pet name" name="petName" className="border-2 border-solid"/>
 
-            <ErrorMessage message={useValidate?.error?.petName}/>
+            <ErrorMessage message={validation?.error?.petName}/>
         </label>
 
         <label className="flex flex-col gap-2">
             Photo URL
-            <input onChange={handleFormState}
-                   onBlur={(event: React.ChangeEvent<FormElementType>) => useValidate.validateForm(event)}
+            <input onChange={handleInputChange}
+                   onBlur={(event: React.ChangeEvent<FormElementType>) => validation.validateForm(event)}
                    value={form.photoUrl}
                    type="url" name="photoUrl" className="border-2 border-solid"/>
 
-            <ErrorMessage message={useValidate?.error?.photoUrl}/>
+            <ErrorMessage message={validation?.error?.photoUrl}/>
         </label>
 
 
         <label className="flex flex-col gap-2">
             location
-            <input onChange={handleFormState}
+            <input onChange={handleInputChange}
                    value={form.location}
-                   onBlur={(event: React.ChangeEvent<FormElementType>) => useValidate.validateForm(event)}
+                   onBlur={(event: React.ChangeEvent<FormElementType>) => validation.validateForm(event)}
                    type="text"
                    name="location"
                    className="border-2 border-solid"/>
-            <ErrorMessage message={useValidate?.error?.location}/>
+            <ErrorMessage message={validation?.error?.location}/>
         </label>
 
         <label>
@@ -107,23 +107,23 @@ export default function ReportForm({
             <textarea
                 name="details"
                 value={form.details}
-                onChange={handleFormState}
-                onBlur={(event: React.ChangeEvent<FormElementType>) => useValidate.validateForm(event)}
+                onChange={handleInputChange}
+                onBlur={(event: React.ChangeEvent<FormElementType>) => validation.validateForm(event)}
                 className="border-2 border-solid w-full"
                 id="">
                     </textarea>
             <br/>
-            <ErrorMessage message={useValidate?.error?.details}/>
+            <ErrorMessage message={validation?.error?.details}/>
         </label>
 
         <label className="flex flex-col gap-2">
             Contact info
-            <input onChange={handleFormState}
-                   onBlur={(event: React.ChangeEvent<FormElementType>) => useValidate.validateForm(event)}
+            <input onChange={handleInputChange}
+                   onBlur={(event: React.ChangeEvent<FormElementType>) => validation.validateForm(event)}
                    value={form.contact}
                    type="text" name="contact" className="border-2 border-solid"/>
 
-            <ErrorMessage message={useValidate?.error?.contact}/>
+            <ErrorMessage message={validation?.error?.contact}/>
         </label>
 
         <input type="submit"

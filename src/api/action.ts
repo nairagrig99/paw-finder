@@ -1,33 +1,31 @@
-import type { Report} from "../types/report.ts";
-import {createReports} from "./report.ts";
+import type {Report} from "../types/report.ts";
+import {createReport} from "./report.ts";
 
 export async function createAnnouncementAction(_: unknown, formData: FormData) {
 
     try {
         const formEntries = Object.fromEntries(formData);
-        let isError = false
-        for (const formKey in formEntries) {
-            if (formEntries[formKey] === '') {
-                isError = true
-            }
+        let hasValidationError = false
+        for (const key in formEntries) {
+            if (formEntries[key] === '') hasValidationError = true
         }
 
-        if (isError) {
+        if (hasValidationError) {
             return {success: false, data: formEntries, error: "Empty Field"};
         }
 
-        const newFormDate = {
+        const newFormData = {
             ...formEntries,
             createdAt: new Date().toISOString().replace(/\.\d{3}/, "")
         } as Report;
 
         await new Promise((resolve) => setTimeout(resolve, 3000))
-        const whatThis = await createReports(newFormDate);
+        await createReport(newFormData);
 
         return {success: true, data: null, error: null};
-    } catch (err: unknown) {
-        if (err instanceof Error) {
-            return {success: false, data: null, error: err.message || "Failed to create report"};
+    } catch (error: unknown) {
+        if (error instanceof Error) {
+            return {success: false, data: null, error: error.message || "Failed to create report"};
         }
     }
 }
