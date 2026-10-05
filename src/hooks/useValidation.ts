@@ -3,9 +3,9 @@ import type {FormElementType} from "../types/report.ts";
 
 export default function useValidation() {
 
-    const [error, setError] = useState<Record<string, string | number>>({});
+    const [error, setError] = useState<Record<string, string>>({});
     const validation = (name: string, value: string) => {
-        if (value === '') {
+        if (name !== 'photoUrl' && value === '') {
             setError((prevState) => ({
                 ...prevState,
                 [name]: 'This field is required'
@@ -20,12 +20,9 @@ export default function useValidation() {
     }
     const validateForm = (event: React.ChangeEvent<FormElementType>) => {
         const {name, value} = event.target
-        console.log("name",name)
-        console.log("value",value)
         validation(name, value)
     }
     const validateFormByName = (name: string, value: string) => {
-
         validation(name, value)
     }
 

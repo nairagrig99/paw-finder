@@ -1,9 +1,10 @@
-import {useActionState, useEffect, useEffectEvent, useState} from "react";
+import {useActionState, useCallback, useEffect, useEffectEvent, useState} from "react";
 import type {ActionState, FormElementType, ModalProps, Report} from "../../types/report.ts";
 import useValidation from "../../hooks/useValidation.ts";
-import {createAnnouncementAction} from "../../api/action.ts";
-import {AnnouncementEnum, PetEnum} from "../../enums/enums.ts";
+import {createAnnouncementAction} from "./action.ts";
 import ReportForm from "../ReportForm/ReportForm.tsx";
+
+export type ReportFormData = Omit<Report, "id">
 
 const INITIAL_ACTION_STATE: ActionState = {
     success: false,
@@ -11,37 +12,37 @@ const INITIAL_ACTION_STATE: ActionState = {
     error: null,
 };
 
-const INITIAL_FORM: Report = {
-    type: AnnouncementEnum.LOST,
-    petType: PetEnum.DOG,
+const INITIAL_FORM: ReportFormData = {
+    type: "lost",
+    petType: "other",
     petName: "",
     details: "",
     photoUrl: "",
     location: "",
-    contact: ""
+    contact: "",
+    createdAt: ""
 }
 
-export default function AddReportModal({isOpen, setIsOpen, page, setPage}: ModalProps) {
+export default function AddReportModal({isOpen, setIsOpen}: ModalProps) {
 
     const [state, formAction, isPending] = useActionState(createAnnouncementAction, INITIAL_ACTION_STATE);
 
-    const [form, setForm] = useState(INITIAL_FORM);
+    const [form, setForm] = useState<ReportFormData>(INITIAL_FORM);
     const validation = useValidation();
-
 
     useEffect(() => {
         document.body.style.overflow = "hidden";
+        const handler = (event: KeyboardEvent) => {
+            if (event.key === 'Escape') setIsOpen(false)
+        }
 
-        window.addEventListener('keydown', (event) => {
-            if (event.key === 'Escape') {
-                setIsOpen(!isOpen)
-            }
-        })
+        window.addEventListener('keydown', handler);
+
         return () => {
             document.body.style.overflow = "auto";
-            window.removeEventListener('keydown', () => setIsOpen(!isOpen))
+            window.removeEventListener('keydown', handler)
         }
-    }, [isOpen, setIsOpen]);
+    }, [setIsOpen]);
 
     const validateErrors = useEffectEvent((state: ActionState) => {
         if (!state.data) return
@@ -52,21 +53,20 @@ export default function AddReportModal({isOpen, setIsOpen, page, setPage}: Modal
         }
     })
 
-    const handlePageChange = useEffectEvent(() => setPage(page))
 
     useEffect(() => {
         if (state?.success) {
-            setIsOpen(!isOpen)
-            handlePageChange()
+            setIsOpen(false)
         }
 
         if (state?.error) {
             validateErrors(state)
         }
 
-    }, [state, setIsOpen, isOpen]);
+    }, [state, setIsOpen]);
 
     const handleInputChange = (e: React.ChangeEvent<FormElementType>) => {
+        validation.validateForm(e)
         const {name, value} = e.target
         setForm((prevState) => ({
             ...prevState,
@@ -74,22 +74,30 @@ export default function AddReportModal({isOpen, setIsOpen, page, setPage}: Modal
         }))
     }
 
+    const onBlurHandle = useCallback((event: React.ChangeEvent<FormElementType>) => {
+        validation.validateForm(event)
+    }, [state?.error])
 
-    return <div className="w-[600px] h-[600px] bg-white fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 ">
+    return <>
+        {isOpen && <div onClick={() => setIsOpen(!isOpen)} className="absolute inset-0 bg-black/50"></div>}
 
-        <div className="relative">
-            <div className="absolute right-2 top-0 text-xl">
-                <button onClick={() => setIsOpen(!isOpen)}> X</button>
+        <div className="w-[600px] h-[600px] bg-white fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 ">
+
+            <div className="relative">
+                <div className="absolute right-2 top-0 text-xl">
+                    <button onClick={() => setIsOpen(!isOpen)}> X</button>
+                </div>
+            </div>
+
+            <div>
+                <ReportForm form={form}
+                            formAction={formAction}
+                            isPending={isPending}
+                            validation={validation}
+                            onBlurHandle={onBlurHandle}
+                            handleInputChange={handleInputChange}
+                ></ReportForm>
             </div>
         </div>
-
-        <div>
-            <ReportForm form={form}
-                        formAction={formAction}
-                        isPending={isPending}
-                        validation={validation}
-                        handleInputChange={handleInputChange}
-            ></ReportForm>
-        </div>
-    </div>
+    </>
 }
