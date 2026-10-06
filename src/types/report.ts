@@ -1,8 +1,15 @@
 export type AnnouncementType = 'lost' | 'found';
 export type PetType = 'dog' | 'cat' | 'bird' | 'other'
 
+export interface PaginatedResponse<T> {
+    data: T[],
+    total: number;
+    page: number;
+    totalPages: number;
+}
+
 export interface Report {
-    id?: string
+    id: string
     type: AnnouncementType
     petType: PetType
     petName: string
@@ -10,21 +17,14 @@ export interface Report {
     photoUrl?: string
     location: string
     contact: string
-    createdAt?: string // ISO 8601
+    createdAt: string // ISO 8601
 }
 
-export interface PaginatedResponse<T> {
-    data: T[];
-    first: number,
-    items: number,
-    last: number,
-    next: number,
-    pages: number,
-    prev: number
-}
+export type CreateReportPayload = Omit<Report, 'id' | 'createdAt'>
 
 type PageProps = {
-    setPage: (page: number) => void,
+    setPage?: (page: number) => void,
+    onPageChange: (page: number) => void,
     page: number
 }
 
@@ -34,7 +34,7 @@ export type ReportProps = {
 
 export type PetListProps = { petsList: PaginatedResponse<Report> }
 
-export type PaginationProps = Pick<ReportProps, "setPage" | "page"> & PetListProps
+export type PaginationProps = Pick<ReportProps, "page" | "onPageChange"> & PetListProps
 
 export type FormElementType = HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
 
@@ -47,4 +47,4 @@ export type ActionState = {
 export type ModalProps = {
     isOpen: boolean,
     setIsOpen: (open: boolean) => void
-} & PageProps
+}

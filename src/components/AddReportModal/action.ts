@@ -1,13 +1,13 @@
-import type {Report} from "../types/report.ts";
-import {createReport} from "./report.ts";
+import type {ActionState, Report} from "../../types/report.ts";
+import {createReport} from "../../api/report.ts";
 
-export async function createAnnouncementAction(_: unknown, formData: FormData) {
+export async function createAnnouncementAction(_: unknown, formData: FormData): Promise<ActionState> {
 
     try {
         const formEntries = Object.fromEntries(formData);
         let hasValidationError = false
         for (const key in formEntries) {
-            if (formEntries[key] === '') hasValidationError = true
+            if (formEntries[key] === '' && key !== 'photoUrl') hasValidationError = true
         }
 
         if (hasValidationError) {
@@ -19,13 +19,13 @@ export async function createAnnouncementAction(_: unknown, formData: FormData) {
             createdAt: new Date().toISOString().replace(/\.\d{3}/, "")
         } as Report;
 
-        await new Promise((resolve) => setTimeout(resolve, 3000))
         await createReport(newFormData);
 
         return {success: true, data: null, error: null};
     } catch (error: unknown) {
-        if (error instanceof Error) {
-            return {success: false, data: null, error: error.message || "Failed to create report"};
-        }
+        const message = error instanceof Error ? error.message : "Failed to create report";
+
+        return {success: false, data: null, error: message};
+
     }
 }

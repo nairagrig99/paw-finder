@@ -1,32 +1,54 @@
-import {Suspense, useState} from "react";
+import {Suspense, useState, useTransition} from "react";
 import ReportGrid from "../components/ReportGrid/ReportGrid.tsx";
 import useReportList from "../hooks/useReportList.ts";
 import AddReportModal from "../components/AddReportModal/AddReportModal.tsx";
 import ReportsListSkeleton from "../components/FallbackState/ReportsListSkeleton.tsx";
+import {ErrorBoundary} from "../components/ErrorBoundary/ErrorBoundary.tsx";
 
 export default function ReportPage() {
 
-    const {fetchRequest, setPage, page} = useReportList();
+    const {promiseRef, setPage, page} = useReportList();
 
     const [isOpen, setIsOpen] = useState<boolean>(false);
+
+    const [isPending, startTransition] = useTransition();
+
+    const handlePageChange = (newPage: number) => {
+        startTransition(() => {
+            setPage(newPage);
+        });
+    }
 
     const handleReport = () => {
         setIsOpen(prevState => !prevState)
     }
 
     return <div className="flex flex-col gap-5 items-start w-full px-3 py-10">
-        {isOpen && <div onClick={handleReport} className="absolute inset-0 bg-black/50"></div>}
+
+        <div>
+
+            {isPending ?
+                <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/20 backdrop-blur-sm">
+                    <div
+                        className="h-10 w-10 animate-spin rounded-full border-4 border-gray-300 border-t-blue-600"></div>
+                </div> : ""}
+        </div>
+
         <button
             onClick={handleReport}
             className="bg-green-500 px-5 py-2 rounded-sm w-fit text-white">
-            Add Report
+            Report a Pet
         </button>
-        <Suspense fallback={<ReportsListSkeleton/>}>
-            {fetchRequest && <ReportGrid fetchRequest={fetchRequest} setPage={setPage} page={page}/>}
-        </Suspense>
-        {isOpen && <AddReportModal isOpen={isOpen}
-                                   page={page}
-                                   setPage={setPage}
-                                   setIsOpen={setIsOpen}/>}
+        <ErrorBoundary fallback={<div>Failed to load</div>}>
+            <Suspense fallback={<ReportsListSkeleton/>}>
+                {promiseRef.current && <ReportGrid fetchRequest={promiseRef.current}
+                                                   onPageChange={handlePageChange}
+                                                   page={page}/>}
+            </Suspense>
+        </ErrorBoundary>
+
+        {isOpen && <AddReportModal
+            isOpen={isOpen}
+            setIsOpen={setIsOpen}/>}
     </div>
 }

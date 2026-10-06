@@ -1,6 +1,7 @@
 import {DAY, MILLISECOND, MINUTE, MONTH, YEAR} from "../constant.ts";
 
-export function formatDate(createdAt: string, dateNow: number) {
+export function formatRelativeTime(createdAt: string) {
+    const dateNow = Date.now()
     const createdTime = new Date(createdAt).getTime();
     const differencesInSecond = Math.floor((dateNow - createdTime) / MILLISECOND);
     const hour = MINUTE * MINUTE;
