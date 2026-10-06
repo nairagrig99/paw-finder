@@ -76,6 +76,83 @@
       "contact": "isPending",
       "createdAt": "2026-10-05T11:25:47Z",
       "id": "Z900tosD9Tk"
+    },
+    {
+      "type": "lost",
+      "petType": "other",
+      "petName": "dd",
+      "photoUrl": "https://placedog.net/400/300?id=4",
+      "location": "sd",
+      "details": "d",
+      "contact": "d",
+      "createdAt": "2026-10-06T07:27:27Z",
+      "id": "FIfFpmaM8gY"
+    },
+    {
+      "type": "lost",
+      "petType": "other",
+      "petName": "dfhgbv",
+      "photoUrl": "http://localhost:5173/",
+      "location": "sd",
+      "details": "s",
+      "contact": "ds",
+      "createdAt": "2026-10-06T07:28:04Z",
+      "id": "EGOpzGkkwd4"
+    },
+    {
+      "type": "lost",
+      "petType": "other",
+      "petName": "h",
+      "photoUrl": "http://localhost:5173/",
+      "location": "hgf",
+      "details": "hg",
+      "contact": "hnmb",
+      "createdAt": "2026-10-06T07:40:15Z",
+      "id": "isYZFxJ8sw8"
+    },
+    {
+      "type": "lost",
+      "petType": "other",
+      "petName": "hdfghc",
+      "photoUrl": "https://placedog.net/400/300?id=4",
+      "location": "America",
+      "details": "dfbn",
+      "contact": "dhfbjc",
+      "createdAt": "2026-10-06T08:03:07Z",
+      "id": "KLQ8MnD27M4"
+    },
+    {
+      "type": "lost",
+      "petType": "other",
+      "petName": "jhdfhc",
+      "photoUrl": "http://localhost:5173/",
+      "location": "gggg",
+      "details": "hjg",
+      "contact": "jhjgkh",
+      "createdAt": "2026-10-06T08:34:06Z",
+      "id": "LxvUVKryQxA"
+    },
+    {
+      "type": "lost",
+      "petType": "other",
+      "petName": "dkjhc",
+      "photoUrl": "http://localhost:5173/",
+      "location": "sdf",
+      "details": "d",
+      "contact": "sdd",
+      "createdAt": "2026-10-06T08:34:28Z",
+      "id": "qrYIatTRPqg"
+    },
+    {
+      "type": "lost",
+      "petType": "other",
+      "petName": "mjfhc",
+      "photoUrl": "http://localhost:5173/",
+      "location": "dfc",
+      "details": "ds",
+      "contact": "dsf",
+      "createdAt": "2026-10-06T08:49:00Z",
+      "id": "VW0MpAmIFGo"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"

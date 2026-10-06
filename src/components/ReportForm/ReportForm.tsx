@@ -9,6 +9,7 @@ type FormElementProps = {
     form: ReportFormData;
     formAction: (payload: FormData) => void;
     isPending: boolean;
+    firstInputRef: React.RefObject<HTMLInputElement | null>;
     validation: ReturnType<typeof useValidation>;
     onBlurHandle: (e: React.ChangeEvent<FormElementType>) => void;
     handleInputChange: (e: React.ChangeEvent<FormElementType>) => void;
@@ -19,6 +20,7 @@ export default function ReportForm({
                                        formAction,
                                        validation,
                                        onBlurHandle,
+                                       firstInputRef,
                                        handleInputChange
                                    }: FormElementProps) {
     const isErrorExist = () => !!Object.keys(validation?.error).length;
@@ -32,6 +34,7 @@ export default function ReportForm({
                 {ANNOUNCEMENT_TYPES.map((type) => {
                     return <label key={type}>
                         <input type="radio"
+                               ref={firstInputRef}
                                name="type"
                                value={type}
                                checked={form.type === type}

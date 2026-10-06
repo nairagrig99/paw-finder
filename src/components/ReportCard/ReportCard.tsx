@@ -6,7 +6,7 @@ import {formatRelativeTime} from "../../util/dateUtils.ts";
 export default function ReportCard({pet}: { pet: Report }) {
 
 
-    return <div className="border p-[7px] flex flex-col justify-around break-words w-[250px]">
+    return <div className="border p-[7px] flex flex-col justify-around break-words w-[250px]" tabIndex={0}>
 
         <PhotoWithFallback photoUrl={pet.photoUrl}/>
 
