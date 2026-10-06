@@ -40,7 +40,7 @@ export default function ReportPage() {
             className="bg-green-500 px-5 py-2 rounded-sm w-fit text-white">
             Report a Pet
         </button>
-        <ErrorBoundary fallback={({resetErrorBoundary}) => <RetryError resetErrorBoundary={resetErrorBoundary}/>}>
+        <ErrorBoundary fallback={({ resetErrorBoundary }) => <RetryError resetErrorBoundary={resetErrorBoundary}/> }>
             <Suspense fallback={<ReportsListSkeleton/>}>
                 {promiseRef.current && <ReportGrid fetchRequest={promiseRef.current}
                                                    onPageChange={handlePageChange}
