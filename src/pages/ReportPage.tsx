@@ -4,6 +4,7 @@ import useReportList from "../hooks/useReportList.ts";
 import AddReportModal from "../components/AddReportModal/AddReportModal.tsx";
 import ReportsListSkeleton from "../components/FallbackState/ReportsListSkeleton.tsx";
 import {ErrorBoundary} from "../components/ErrorBoundary/ErrorBoundary.tsx";
+import RetryError from "../components/ErrorBoundary/RetryError.tsx";
 
 export default function ReportPage() {
 
@@ -39,7 +40,7 @@ export default function ReportPage() {
             className="bg-green-500 px-5 py-2 rounded-sm w-fit text-white">
             Report a Pet
         </button>
-        <ErrorBoundary fallback={<div>Failed to load</div>}>
+        <ErrorBoundary fallback={({resetErrorBoundary}) => <RetryError resetErrorBoundary={resetErrorBoundary}/>}>
             <Suspense fallback={<ReportsListSkeleton/>}>
                 {promiseRef.current && <ReportGrid fetchRequest={promiseRef.current}
                                                    onPageChange={handlePageChange}
