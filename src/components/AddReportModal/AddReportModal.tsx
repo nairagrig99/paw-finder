@@ -41,7 +41,8 @@ export default function AddReportModal({isOpen, setIsOpen}: ModalProps) {
         const modalElement = modalRef.current;
 
         const handler = (event: KeyboardEvent) => {
-            const focusableElements = modalElement?.querySelectorAll<HTMLElement>('button, [href], input:not([disabled]), select, textarea, [tabindex]:not([tabindex="-1"])')
+            const focusableElements =
+                modalElement?.querySelectorAll<HTMLElement>('button, [href], input:not([disabled]), select, textarea, [tabindex]:not([tabindex="-1"])')
 
             if (!focusableElements) return
 
@@ -74,15 +75,16 @@ export default function AddReportModal({isOpen, setIsOpen}: ModalProps) {
         }
     }, [setIsOpen]);
 
-
-    const validateErrors = useCallback((state: ActionState) => {
-        if (!state.data) return
-        for (const key in state.data) {
-            const reportKey = key as keyof Report;
-            const value = state.data[reportKey];
-            validation.validateFormByName(reportKey, String(value))
+    useEffect(() => {
+        if (state.error) {
+            if (!state.data) return
+            for (const key in state.data) {
+                const reportKey = key as keyof Report;
+                const value = state.data[reportKey];
+                validation.validateFormByName(reportKey, String(value))
+            }
         }
-    }, [validation])
+    }, [state])
 
     useEffect(() => {
         if (isOpen && firstInputRef?.current) firstInputRef.current.focus()
@@ -92,10 +94,9 @@ export default function AddReportModal({isOpen, setIsOpen}: ModalProps) {
         if (state?.success) setIsOpen(false)
 
         if (state?.error) {
-            validateErrors(state);
             closeButtonRef.current?.focus();
         }
-    }, [state, setIsOpen, validateErrors]);
+    }, [state, setIsOpen]);
 
     const handleInputChange = (e: React.ChangeEvent<FormElementType>) => {
         validation.validateForm(e)
@@ -122,10 +123,11 @@ export default function AddReportModal({isOpen, setIsOpen}: ModalProps) {
 
         <div
             ref={modalRef}
+
             role="dialog"
             aria-modal="true"
-
             aria-labelledby="modal-title"
+
             className="w-[600px] bg-white fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 ">
 
             <div className="relative">

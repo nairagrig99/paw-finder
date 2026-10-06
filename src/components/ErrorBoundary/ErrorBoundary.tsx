@@ -1,5 +1,5 @@
 import * as React from 'react';
-import type {ErrorInfo, ReactNode} from "react";
+import type {ReactNode} from "react";
 
 export interface FallbackProps {
     error: Error | null;
@@ -27,9 +27,6 @@ export class ErrorBoundary extends React.Component<ErrorBoundaryProps, ErrorBoun
         return {hasError: true, error}
     }
 
-    componentDidCatch(error: Error, errorInfo: ErrorInfo) {
-        console.error("ErrorBoundary caught an error:", error, errorInfo);
-    }
 
     resetErrorBoundary = () => {
         this.setState({hasError: false, error: null});
