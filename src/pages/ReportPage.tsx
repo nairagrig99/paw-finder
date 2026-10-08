@@ -1,4 +1,4 @@
-import {Suspense, useState, useTransition} from "react";
+import {Suspense, useState} from "react";
 import ReportGrid from "../components/ReportGrid/ReportGrid.tsx";
 import useReportList from "../hooks/useReportList.ts";
 import AddReportModal from "../components/AddReportModal/AddReportModal.tsx";
@@ -8,17 +8,9 @@ import RetryError from "../components/ErrorBoundary/RetryError.tsx";
 
 export default function ReportPage() {
 
-    const {promiseRef, setPage, page} = useReportList();
-
+    const {promiseRef, setPage, page, isPending} = useReportList();
+    // console.log("promiseRef",promiseRef)
     const [isOpen, setIsOpen] = useState<boolean>(false);
-
-    const [isPending, startTransition] = useTransition();
-
-    const handlePageChange = (newPage: number) => {
-        startTransition(() => {
-            setPage(newPage);
-        });
-    }
 
     const handleReport = () => {
         setIsOpen(prevState => !prevState)
@@ -40,15 +32,21 @@ export default function ReportPage() {
             className="bg-green-500 px-5 py-2 rounded-sm w-fit text-white">
             Report a Pet
         </button>
-        <ErrorBoundary fallback={({ resetErrorBoundary }) => <RetryError resetErrorBoundary={resetErrorBoundary}/> }>
+        <ErrorBoundary fallback={({resetErrorBoundary}) => {
+            console.log("WORK")
+            return <RetryError resetErrorBoundary={resetErrorBoundary}/>
+        }
+        }>
             <Suspense fallback={<ReportsListSkeleton/>}>
                 {promiseRef.current && <ReportGrid fetchRequest={promiseRef.current}
-                                                   onPageChange={handlePageChange}
-                                                   page={page}/>}
+                                           onPageChange={setPage}
+                                           page={page}/>}
             </Suspense>
         </ErrorBoundary>
 
         {isOpen && <AddReportModal
+            page={page}
+            setPage={setPage}
             isOpen={isOpen}
             setIsOpen={setIsOpen}/>}
     </div>
