@@ -8,12 +8,12 @@ const ReportGrid = memo(({fetchRequest, onPageChange, page}: ReportProps) => {
 
     const getPets = use(fetchRequest);
 
-    return <div className="flex flex-col gap-2 w-full">
+    return <div className="flex flex-col gap-2 w-full min-h-screen">
 
         <div
-            className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-7 gap-4 w-full justify-items-center">
+            className="grid grid-cols-1  sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-7 gap-4 w-full justify-items-center">
             {
-                getPets && getPets.data.map((pet: Report) => (
+                getPets && getPets?.data?.map((pet: Report) => (
                     <ReportCard pet={pet} key={pet.id}/>
                 ))
             }

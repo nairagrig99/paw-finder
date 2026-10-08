@@ -23,7 +23,12 @@ const INITIAL_FORM: ReportFormData = {
     createdAt: ""
 }
 
-export default function AddReportModal({isOpen, setIsOpen}: ModalProps) {
+export default function AddReportModal({
+                                           isOpen,
+                                           setIsOpen,
+                                           setPage,
+                                           page
+                                       }: ModalProps) {
 
     const [state, formAction, isPending] = useActionState(createAnnouncementAction, INITIAL_ACTION_STATE);
 
@@ -90,13 +95,16 @@ export default function AddReportModal({isOpen, setIsOpen}: ModalProps) {
         if (isOpen && firstInputRef?.current) firstInputRef.current.focus()
     }, [isOpen]);
 
-    useEffect(() => {
-        if (state?.success) setIsOpen(false)
 
-        if (state?.error) {
-            closeButtonRef.current?.focus();
+    useEffect(() => {
+        if (state?.success) {
+            setIsOpen(false)
+            setPage(page)
         }
-    }, [state, setIsOpen]);
+        console.log("page is here it works too many time")
+        if (state?.error) closeButtonRef.current?.focus();
+
+    }, [state, setIsOpen, setPage, page]);
 
     const handleInputChange = (e: React.ChangeEvent<FormElementType>) => {
         validation.validateForm(e)

@@ -22,7 +22,7 @@ export default function Pagination({
         if (page + PER_PAGINATION > petsList.totalPages) return;
     }
 
-    return <div className="flex gap-2 justify-center mt-8">
+    return <div className="flex gap-2 justify-center  mt-auto">
 
         <button
             onClick={handlePrevPage}

@@ -45,6 +45,8 @@ export type ActionState = {
 };
 
 export type ModalProps = {
+    page: number,
     isOpen: boolean,
+    setPage: (page: number) => void;
     setIsOpen: (open: boolean) => void
 }
