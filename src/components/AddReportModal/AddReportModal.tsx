@@ -101,7 +101,7 @@ export default function AddReportModal({
             setIsOpen(false)
             setPage(page)
         }
-        console.log("page is here it works too many time")
+
         if (state?.error) closeButtonRef.current?.focus();
 
     }, [state, setIsOpen, setPage, page]);

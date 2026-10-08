@@ -20,9 +20,6 @@ export default function useReportList(pageNumber: number = 1) {
     const setPage = (newPage: number) => {
 
         startTransition(() => {
-
-            console.log("newPage", newPage)
-
             promiseRef.current = fetchReports(newPage);
 
             setPageState(newPage);
@@ -30,7 +27,6 @@ export default function useReportList(pageNumber: number = 1) {
         });
 
     };
-    console.log("how much time is this working")
 
     return {
         promiseRef,

@@ -29,7 +29,6 @@ export class ErrorBoundary extends React.Component<ErrorBoundaryProps, ErrorBoun
 
 
     resetErrorBoundary = () => {
-        console.log("is this work ")
         this.setState({hasError: false, error: null});
     }
 

@@ -9,7 +9,7 @@ import RetryError from "../components/ErrorBoundary/RetryError.tsx";
 export default function ReportPage() {
 
     const {promiseRef, setPage, page, isPending} = useReportList();
-    // console.log("promiseRef",promiseRef)
+
     const [isOpen, setIsOpen] = useState<boolean>(false);
 
     const handleReport = () => {
@@ -33,7 +33,6 @@ export default function ReportPage() {
             Report a Pet
         </button>
         <ErrorBoundary fallback={({resetErrorBoundary}) => {
-            console.log("WORK")
             return <RetryError resetErrorBoundary={resetErrorBoundary}/>
         }
         }>
