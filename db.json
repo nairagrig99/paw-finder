@@ -142,7 +142,8 @@
       "contact": "you can find my by my phone number +374865932",
       "createdAt": "2026-10-08T07:54:37Z",
       "id": "ersBkHFdN5Y"
-    },{
+    },
+    {
       "id": "11",
       "type": "lost",
       "petType": "dog",
@@ -284,6 +285,17 @@
       "contact": "you can find my by my phone number +374865932",
       "createdAt": "2026-10-08T07:54:37Z",
       "id": "ersBkHFdN5Y1"
+    },
+    {
+      "type": "lost",
+      "petType": "other",
+      "petName": "Miki",
+      "photoUrl": "http://localhost:5173/",
+      "location": "America",
+      "details": "ռֆ",
+      "contact": "America",
+      "createdAt": "2026-10-13T07:31:48Z",
+      "id": "-Lwh8kWW47Q"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"
