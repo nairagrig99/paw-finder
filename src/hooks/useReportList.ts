@@ -3,12 +3,8 @@ import {useRef, useState, useTransition} from "react";
 import {fetchReports} from "../api/report.ts";
 
 import type {PaginatedResponse, Report} from "../types/report.ts";
-import {useSearchParams} from "react-router";
-
 
 export default function useReportList(pageNumber: number = 1) {
-
-    const [searchParams, setSearchParams] = useSearchParams();
 
     const promiseRef = useRef<Promise<PaginatedResponse<Report>> | null>(null);
 
