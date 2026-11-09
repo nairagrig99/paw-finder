@@ -4,7 +4,6 @@ import {fetchReports} from "../api/report.ts";
 
 import type {PaginatedResponse, Report} from "../types/report.ts";
 
-
 export default function useReportList(pageNumber: number = 1) {
 
     const promiseRef = useRef<Promise<PaginatedResponse<Report>> | null>(null);
@@ -21,13 +20,11 @@ export default function useReportList(pageNumber: number = 1) {
 
         startTransition(() => {
             promiseRef.current = fetchReports(newPage);
-
             setPageState(newPage);
-
         });
 
     };
-
+    // { data, totalPages, isPending }.
     return {
         promiseRef,
         isPending,
