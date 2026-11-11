@@ -1,12 +1,15 @@
 import {BASE_URL, PAGE_SIZE} from "../constant.ts";
-import type {CreateReportPayload, PaginatedResponse, Report} from "../types/report.ts";
+import type {CreateReportPayload, PaginatedResponse, Report, ReportFilters} from "../types/report.ts";
 
-export async function fetchReports(page: number): Promise<PaginatedResponse<Report>> {
+export async function fetchReports(reportFilters: ReportFilters):
+    Promise<PaginatedResponse<Report>> {
 
     try {
-        const response = await fetch(`${BASE_URL}/reports?_page=${page}&_per_page=${PAGE_SIZE}`)
+        const response = await fetch(`
+        ${BASE_URL}/reports?page=${reportFilters.page}&limit=${PAGE_SIZE}&search=${reportFilters.search}&type=${reportFilters.type}&petType=${reportFilters.petType}&sort=${reportFilters.sort}`)
 
-        if (!response.ok) {
+        if (!response.ok
+        ) {
             throw new Error("Something went wrong");
         }
 
@@ -14,11 +17,11 @@ export async function fetchReports(page: number): Promise<PaginatedResponse<Repo
 
         return {
             data: data.data,
-            total: data.items,
-            page: data.prev ? data.prev + 1 : (data.next ? data.next - 1 : data.first),
-            totalPages: data.pages
+            total: data.total,
+            page: data.page,
         }
-    } catch (error: unknown) {
+    } catch
+        (error: unknown) {
         if (error instanceof Error) {
             throw error;
         }
@@ -45,6 +48,6 @@ export async function createReport(data: CreateReportPayload): Promise<Report> {
         if (error instanceof Error) {
             throw error;
         }
-        throw new Error("Failed to create reports",{cause: error});
+        throw new Error("Failed to create reports", {cause: error});
     }
 }

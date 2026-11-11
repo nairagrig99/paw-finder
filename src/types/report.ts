@@ -5,7 +5,6 @@ export interface PaginatedResponse<T> {
     data: T[],
     total: number;
     page: number;
-    totalPages: number;
 }
 
 export interface Report {
@@ -29,10 +28,12 @@ type PageProps = {
 }
 
 export type ReportProps = {
+    data:Report[],
+    totalPages?: number,
     fetchRequest: Promise<PaginatedResponse<Report>>
 } & PageProps
 
-export type PetListProps = { petsList: PaginatedResponse<Report> }
+export type PetListProps = { reportList: PaginatedResponse<Report> }
 
 export type PaginationProps = Pick<ReportProps, "page" | "onPageChange"> & PetListProps
 
@@ -49,4 +50,16 @@ export type ModalProps = {
     isOpen: boolean,
     setPage: (page: number) => void;
     setIsOpen: (open: boolean) => void
+}
+
+
+export type SortOrder = 'asc' | 'desc'
+
+
+export interface ReportFilters {
+    search: string
+    type: AnnouncementType | 'all'
+    petType: PetType | 'all'
+    sort: SortOrder
+    page: number
 }

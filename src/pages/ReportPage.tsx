@@ -1,14 +1,18 @@
 import {Suspense, useState} from "react";
 import ReportGrid from "../components/ReportGrid/ReportGrid.tsx";
-import useReportList from "../hooks/useReportList.ts";
+import useReports from "../hooks/useReports.ts";
 import AddReportModal from "../components/AddReportModal/AddReportModal.tsx";
 import ReportsListSkeleton from "../components/FallbackState/ReportsListSkeleton.tsx";
 import {ErrorBoundary} from "../components/ErrorBoundary/ErrorBoundary.tsx";
 import RetryError from "../components/ErrorBoundary/RetryError.tsx";
+import SearchInput from "../components/SearchInput/SearchInput.tsx";
+import FilterBar from "../components/FilterBar/FilterBar.tsx";
+import Sort from "../components/SortBar/Sort.tsx";
+import {ANNOUNCEMENT_TYPES, PET_TYPES} from "../constant.ts";
 
 export default function ReportPage() {
 
-    const {promiseRef, setPage, page, isPending} = useReportList();
+    const {data, totalPage, page, filters, isPending, onPageChange} = useReports();
 
     const [isOpen, setIsOpen] = useState<boolean>(false);
 
@@ -17,9 +21,7 @@ export default function ReportPage() {
     }
 
     return <div className="flex flex-col gap-5 items-start w-full px-3 py-10">
-
         <div>
-
             {isPending ?
                 <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/20 backdrop-blur-sm">
                     <div
@@ -32,20 +34,31 @@ export default function ReportPage() {
             className="bg-green-500 px-5 py-2 rounded-sm w-fit text-white">
             Report a Pet
         </button>
+
+        <div className="flex justify-between w-full">
+            <SearchInput/>
+            <FilterBar options={PET_TYPES} type="petType"/>
+            <FilterBar options={ANNOUNCEMENT_TYPES} type="type"/>
+            <Sort/>
+        </div>
+
         <ErrorBoundary fallback={({resetErrorBoundary}) => {
             return <RetryError resetErrorBoundary={resetErrorBoundary}/>
         }
         }>
             <Suspense fallback={<ReportsListSkeleton/>}>
-                {promiseRef.current && <ReportGrid fetchRequest={promiseRef.current}
-                                           onPageChange={setPage}
-                                           page={page}/>}
+                {data?.length > 0 && <ReportGrid data={data}
+                                                 onPageChange={onPageChange}
+                                                 page={page} totalPage={totalPage}/>}
+                {!data?.length && filters.search &&
+                    <div>No reports found for {(<span> [{filters.search}]</span>)}</div>}
+
             </Suspense>
         </ErrorBoundary>
 
         {isOpen && <AddReportModal
             page={page}
-            setPage={setPage}
+            // setPage={setPage}
             isOpen={isOpen}
             setIsOpen={setIsOpen}/>}
     </div>
