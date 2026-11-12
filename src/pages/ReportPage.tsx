@@ -12,7 +12,7 @@ import {ANNOUNCEMENT_TYPES, PET_TYPES} from "../constant.ts";
 
 export default function ReportPage() {
 
-    const {data, totalPage, page, filters, isPending, onPageChange} = useReports();
+    const {data, totalPages, page, filters, isPending, onPageChange} = useReports();
 
     const [isOpen, setIsOpen] = useState<boolean>(false);
 
@@ -49,7 +49,8 @@ export default function ReportPage() {
             <Suspense fallback={<ReportsListSkeleton/>}>
                 {data?.length > 0 && <ReportGrid data={data}
                                                  onPageChange={onPageChange}
-                                                 page={page} totalPage={totalPage}/>}
+                                                 page={page}
+                                                 totalPages={totalPages}/>}
                 {!data?.length && filters.search &&
                     <div>No reports found for {(<span> [{filters.search}]</span>)}</div>}
 
@@ -58,7 +59,6 @@ export default function ReportPage() {
 
         {isOpen && <AddReportModal
             page={page}
-            // setPage={setPage}
             isOpen={isOpen}
             setIsOpen={setIsOpen}/>}
     </div>

@@ -14,14 +14,15 @@ export default function useReportFilters() {
         })
     }, [searchParams]);
 
-    const setFilters = useCallback((updates: Record<string, string>) => {
+    const setFilters = useCallback((updates:
+                                    { page: number, search: string, type: string, petType: string, sort: string }) => {
         setSearchParams((params) => {
             if ((filters.search !== "undefined" && filters.search !== null && updates.search) || updates.search === '') {
                 params.set('search', updates.search);
             }
 
             if (filters.page && updates.page) {
-                params.set('page', updates.page);
+                params.set('page', String(updates.page));
             }
 
             if (filters.type !== "undefined" && filters.type !== "" && filters.type !== null && updates.type) {

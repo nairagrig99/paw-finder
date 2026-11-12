@@ -1,4 +1,6 @@
-export type AnnouncementType = 'lost' | 'found';
+import {ANNOUNCEMENT_TYPES} from "../constant.ts";
+
+export type AnnouncementType = typeof ANNOUNCEMENT_TYPES[number]
 export type PetType = 'dog' | 'cat' | 'bird' | 'other'
 
 export interface PaginatedResponse<T> {
@@ -30,12 +32,11 @@ type PageProps = {
 export type ReportProps = {
     data:Report[],
     totalPages?: number,
-    fetchRequest: Promise<PaginatedResponse<Report>>
 } & PageProps
 
 export type PetListProps = { reportList: PaginatedResponse<Report> }
 
-export type PaginationProps = Pick<ReportProps, "page" | "onPageChange"> & PetListProps
+export type PaginationProps = Pick<ReportProps, "page" | "onPageChange" | "totalPages">
 
 export type FormElementType = HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
 
@@ -48,7 +49,7 @@ export type ActionState = {
 export type ModalProps = {
     page: number,
     isOpen: boolean,
-    setPage: (page: number) => void;
+    setPage?: (page: number) => void;
     setIsOpen: (open: boolean) => void
 }
 

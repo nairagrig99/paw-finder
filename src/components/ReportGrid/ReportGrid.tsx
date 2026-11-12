@@ -7,7 +7,7 @@ const ReportGrid = memo(({
                              data,
                              onPageChange,
                              page,
-                             totalPage
+                             totalPages
                          }: ReportProps) => {
 
 
@@ -29,10 +29,10 @@ const ReportGrid = memo(({
                 </div>}
         </div>
 
-        {!!data.length && <Pagination reportList={data}
+        {!!data.length && <Pagination
                                       onPageChange={onPageChange}
                                       page={page}
-                                      totalPage={totalPage}
+                                      totalPages={totalPages}
         />}
     </main>
 

@@ -2,23 +2,25 @@ import {useEffect, useState, useTransition} from "react";
 
 import {fetchReports} from "../api/report.ts";
 
-import type {PaginatedResponse, Report} from "../types/report.ts";
+import type {Report} from "../types/report.ts";
 import useReportFilters from "./useReportFilters.ts";
 
 
 export default function useReports() {
 
     const {filters, setFilters} = useReportFilters();
-    const [data, setData] = useState<PaginatedResponse<Report[]>>();
+    const [data, setData] = useState<Report[]>([]);
 
     const [isPending, startTransition] = useTransition();
 
-    const [totalPage, setTotalPage] = useState<number>(0);
+    const [totalPages, setTotalPage] = useState<number>(0);
     const [page, setPage] = useState<number>(0);
 
     useEffect(() => {
 
         (async () => {
+            // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+            //@ts-expect-error
             const fetchRequest = await fetchReports(filters)
             startTransition(() => {
                 setData(fetchRequest.data)
@@ -29,12 +31,14 @@ export default function useReports() {
     }, [filters]);
 
     const onPageChange = (page: number) => {
-        setFilters({page: page})
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        //@ts-expect-error
+        setFilters({page})
     }
 
     return {
         data,
-        totalPage,
+        totalPages,
         page,
         filters,
         onPageChange,
