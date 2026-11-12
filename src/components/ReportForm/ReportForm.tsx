@@ -32,7 +32,8 @@ export default function ReportForm({
             <span>Announcement type </span>
             <div className="flex gap-5">
                 {ANNOUNCEMENT_TYPES.map((type) => {
-                    return <label key={type}>
+                    return type !== 'all' && <label key={type}>
+
                         <input type="radio"
                                ref={firstInputRef}
                                name="type"

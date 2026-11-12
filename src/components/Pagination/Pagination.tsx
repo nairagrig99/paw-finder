@@ -1,12 +1,12 @@
 import type {PaginationProps} from "../../types/report.ts";
 
-import {PER_PAGINATION} from "../../constant.ts";
+import {PAGE_SIZE, PER_PAGINATION} from "../../constant.ts";
 
 
 export default function Pagination({
                                        page,
                                        onPageChange,
-                                       petsList
+                                       totalPages
                                    }: PaginationProps) {
 
     const handlePrevPage = () => {
@@ -15,11 +15,13 @@ export default function Pagination({
         onPageChange(prev)
     }
 
+    if (!totalPages) return;
+
     const handleNextPage = () => {
         const next = page + 1;
-        if (next > petsList.totalPages) return
+        if (next > totalPages) return
         onPageChange(next);
-        if (page + PER_PAGINATION > petsList.totalPages) return;
+        if (page + PER_PAGINATION > totalPages) return;
     }
 
     return <div className="flex gap-2 justify-center  mt-auto">
@@ -31,7 +33,7 @@ export default function Pagination({
         <div className={`flex items-center gap-2 cursor-pointer overflow-hidden`}
         >
             <div className="flex text-gray-700 font-medium">
-                <div> {page} of {petsList.totalPages}</div>
+                <div> {page} of {totalPages / PAGE_SIZE}</div>
             </div>
         </div>
         <button

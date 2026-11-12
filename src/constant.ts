@@ -10,6 +10,8 @@ export const MILLISECOND = 1000;
 export const PER_PAGINATION = 3;
 
 export const PAGE_SIZE = 12
-export const ANNOUNCEMENT_TYPES = ['lost', 'found'] as const;
+export const ANNOUNCEMENT_TYPES = ['all', 'lost', 'found'];
 
-export const PET_TYPES = ['dog', 'cat', 'bird', 'other'] as const;
+export const PET_TYPES = ['dog', 'cat', 'bird', 'other'];
+
+export const SORT_BY = ['asc', 'desc']
