@@ -15,3 +15,8 @@ export const ANNOUNCEMENT_TYPES = ['all', 'lost', 'found'];
 export const PET_TYPES = ['dog', 'cat', 'bird', 'other'];
 
 export const SORT_BY = ['asc', 'desc']
+
+export const THEME_MODE = {
+    LIGHT: 'light',
+    DARK: 'dark',
+} as const;

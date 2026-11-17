@@ -9,9 +9,11 @@ import SearchInput from "../components/SearchInput/SearchInput.tsx";
 import FilterBar from "../components/FilterBar/FilterBar.tsx";
 import Sort from "../components/SortBar/Sort.tsx";
 import {ANNOUNCEMENT_TYPES, PET_TYPES} from "../constant.ts";
+import useTheme from "../hooks/useTheme.ts";
 
 export default function ReportPage() {
 
+    const {toggleTheme} = useTheme();
     const {data, totalPages, page, filters, isPending, onPageChange} = useReports();
 
     const [isOpen, setIsOpen] = useState<boolean>(false);
@@ -20,7 +22,9 @@ export default function ReportPage() {
         setIsOpen(prevState => !prevState)
     }
 
-    return <div className="flex flex-col gap-5 items-start w-full px-3 py-10">
+    return <div className={`flex flex-col gap-5 items-start w-full px-3 py-10`}>
+        <button onClick={() => toggleTheme?.()} className="bg-black text-white px-3 py-2 rounded-1xl">Dark / light
+        </button>
         <div>
             {isPending ?
                 <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/20 backdrop-blur-sm">
