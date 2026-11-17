@@ -16,7 +16,6 @@ export function ThemeProvider({children}: { children: ReactNode }) {
         document.documentElement.setAttribute('data-theme', theme);
     }, [theme])
 
-
     const toggleTheme = () => {
         setTheme((prevTheme: string) => (prevTheme === THEME_MODE.LIGHT ? THEME_MODE.DARK : THEME_MODE.LIGHT));
     }
