@@ -9,17 +9,12 @@ interface ThemeContextProps {
 export const ThemeContext = createContext<ThemeContextProps | undefined>(undefined);
 
 export function ThemeProvider({children}: { children: ReactNode }) {
-    const [theme, setTheme] = useState(() => {
-            const themeMode = localStorage.getItem('themeMode')
-            return themeMode === THEME_MODE.DARK || themeMode === THEME_MODE.LIGHT ? themeMode : THEME_MODE.LIGHT;
-        }
-    );
+    const [theme, setTheme] = useState(JSON.parse(localStorage.getItem('themeMode') || 'light'));
 
     useEffect(() => {
         localStorage.setItem('themeMode', JSON.stringify(theme))
         document.documentElement.setAttribute('data-theme', theme);
     }, [theme])
-
 
     const toggleTheme = () => {
         setTheme((prevTheme: string) => (prevTheme === THEME_MODE.LIGHT ? THEME_MODE.DARK : THEME_MODE.LIGHT));
