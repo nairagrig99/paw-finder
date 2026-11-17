@@ -6,13 +6,14 @@ export default function FilterBar({options, type}: { options: string[], type: st
     const {setFilters} = useReportFilters()
 
     return <div>
-        <select name="" id="" className="capitalize" onChange={(e) => {
+        <select name="" id=""
+                className="capitalize p-2 border-2" onChange={(e) => {
             setFilters({[type]: e.currentTarget.value})
             setSelected(e.currentTarget.value)
         }}>
-            <option disabled selected>Filter by {[type]}</option>
+            <option disabled value={selected}>Filter by {[type]}</option>
             {options.map((option) => (
-                <option key={option} value={option} selected={selected === option}
+                <option key={option} value={option}
                         className={`${selected === option ? 'bg-red-500' : ''} capitalize hover:bg-red-100`}>{option}</option>
             ))}
         </select>

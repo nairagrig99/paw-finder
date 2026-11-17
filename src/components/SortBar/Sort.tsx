@@ -7,7 +7,7 @@ export default function Sort() {
         name="sort"
         onChange={(e) => setFilters({sort: e.target.value})}
         aria-label="Sort reports"
-        className="..."
+        className="p-2 border-2"
     >
         <option disabled selected>Sort</option>
         {SORT_BY.map((option) =>
