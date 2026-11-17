@@ -26,7 +26,6 @@ const INITIAL_FORM: ReportFormData = {
 export default function AddReportModal({
                                            isOpen,
                                            setIsOpen,
-                                           setPage,
                                            page
                                        }: ModalProps) {
 
@@ -99,12 +98,11 @@ export default function AddReportModal({
     useEffect(() => {
         if (state?.success) {
             setIsOpen(false)
-            setPage(page)
         }
 
         if (state?.error) closeButtonRef.current?.focus();
 
-    }, [state, setIsOpen, setPage, page]);
+    }, [state, setIsOpen, page]);
 
     const handleInputChange = (e: React.ChangeEvent<FormElementType>) => {
         validation.validateForm(e)

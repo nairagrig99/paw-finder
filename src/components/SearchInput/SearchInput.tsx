@@ -18,10 +18,10 @@ export default function SearchInput() {
 
     }
 
-
     return <>
         <input type="search"
                className="bg-red-100 border-2"
+               placeholder="Search..."
                onChange={(e) => onChange(e.currentTarget.value)}/>
     </>
 }
